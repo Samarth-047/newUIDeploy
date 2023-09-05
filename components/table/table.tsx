@@ -2,8 +2,6 @@ import { Table } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { Box } from '../styles/box';
-import { columns, users } from './data';
-import { RenderCell } from './render-cell';
 import { useSession } from "next-auth/react"
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER_AND_API_CALLS } from "../../src/graphql/queries.js";
@@ -72,7 +70,7 @@ export const TableWrapper = () => {
             </Table.Header>
             <Table.Body >
                {Api_calls?.map((row:any, index) => (
-                  <Table.Row>
+                  <Table.Row key={index}>
                      <Table.Cell>
                         {row.video_url}
                      </Table.Cell>
