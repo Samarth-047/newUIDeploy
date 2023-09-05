@@ -30,8 +30,8 @@ export const Accounts = () => {
          <Breadcrumbs>
             <Crumb>
                <HouseIcon />
-               <Link href={'/'}>
-                  <CrumbLink href="#">Home</CrumbLink>
+               <Link href={"/loginNavigate"}>
+                  <CrumbLink href="/loginNavigate">Home</CrumbLink>
                </Link>
                <Text>/</Text>
             </Crumb>
@@ -46,38 +46,7 @@ export const Accounts = () => {
             </Crumb>
          </Breadcrumbs>
 
-         <Text h3>All Accounts</Text>
-         <Flex
-            css={{gap: '$8'}}
-            align={'center'}
-            justify={'between'}
-            wrap={'wrap'}
-         >
-            <Flex
-               css={{
-                  'gap': '$6',
-                  'flexWrap': 'wrap',
-                  '@sm': {flexWrap: 'nowrap'},
-               }}
-               align={'center'}
-            >
-               <Input
-                  css={{width: '100%', maxW: '410px'}}
-                  placeholder="Search users"
-               />
-               <SettingsIcon />
-               <TrashIcon />
-               <InfoIcon />
-               <DotsIcon />
-            </Flex>
-            <Flex direction={'row'} css={{gap: '$6'}} wrap={'wrap'}>
-               <AddUser />
-               <Button auto iconRight={<ExportIcon />}>
-                  Export to CSV
-               </Button>
-            </Flex>
-         </Flex>
-
+         <Text h3>All API-Calls</Text>
          <TableWrapper />
       </Flex>
    );

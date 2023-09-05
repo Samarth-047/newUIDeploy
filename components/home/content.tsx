@@ -55,7 +55,7 @@ export const Content = () => (
                      },
                   }}
                >
-                  Available Balance
+                  Dashboard
                </Text>
                <Flex
                   css={{
@@ -103,89 +103,7 @@ export const Content = () => (
          </Flex>
 
          {/* Left Section */}
-         <Box
-            css={{
-               'px': '$12',
-               'mt': '$8',
-               'height': 'fit-content',
-               '@xsMax': {px: '$10'},
-               'gap': '$6',
-               'overflow': 'hidden',
-            }}
-         >
-            <Text
-               h3
-               css={{
-                  'textAlign': 'center',
-                  '@lg': {
-                     textAlign: 'inherit',
-                  },
-               }}
-            >
-               Section
-            </Text>
-            <Flex
-               direction={'column'}
-               justify={'center'}
-               css={{
-                  'gap': '$8',
-                  'flexDirection': 'row',
-                  'flexWrap': 'wrap',
-                  '@sm': {
-                     flexWrap: 'nowrap',
-                  },
-                  '@lg': {
-                     flexWrap: 'nowrap',
-                     flexDirection: 'column',
-                  },
-               }}
-            >
-               <CardAgents />
-               <CardTransactions />
-            </Flex>
-         </Box>
-      </Flex>
-
-      {/* Table Latest Users */}
-      <Flex
-         direction={'column'}
-         justify={'center'}
-         css={{
-            'width': '100%',
-            'py': '$10',
-            'px': '$10',
-            'mt': '$8',
-            '@sm': {px: '$20'},
-         }}
-      >
-         <Flex justify={'between'} wrap={'wrap'}>
-            <Text
-               h3
-               css={{
-                  'textAlign': 'center',
-                  '@lg': {
-                     textAlign: 'inherit',
-                  },
-               }}
-            >
-               Latest Users
-            </Text>
-            <NextLink href="/accounts">
-               <Link
-                  block
-                  color="primary"
-                  css={{
-                     'textAlign': 'center',
-                     '@lg': {
-                        textAlign: 'inherit',
-                     },
-                  }}
-               >
-                  View All
-               </Link>
-            </NextLink>
-         </Flex>
-         <TableWrapper />
+         
       </Flex>
    </Box>
 );

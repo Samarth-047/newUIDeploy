@@ -1,0 +1,26 @@
+.home{
+    diplay: flex;
+    flex-direction: column;
+
+}
+
+.topbar{
+
+}
+
+.card{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 16vh;
+    background:white;    
+    border: .1vw solid black;
+    border-radius: .2vw;
+}
+
+.cardTopText{
+
+}
+

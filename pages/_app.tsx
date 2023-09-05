@@ -3,6 +3,9 @@ import type {AppProps} from 'next/app';
 import {createTheme, NextUIProvider} from '@nextui-org/react';
 import {ThemeProvider as NextThemesProvider} from 'next-themes';
 import {Layout} from '../components/layout/layout';
+import { SessionProvider } from 'next-auth/react';
+import { ApolloProvider } from '@apollo/client';
+import client from '../src/lib/apollo-client';
 
 const lightTheme = createTheme({
    type: 'light',
@@ -18,7 +21,7 @@ const darkTheme = createTheme({
    },
 });
 
-function MyApp({Component, pageProps}: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
    return (
       <NextThemesProvider
          defaultTheme="system"
@@ -29,9 +32,12 @@ function MyApp({Component, pageProps}: AppProps) {
          }}
       >
          <NextUIProvider>
-            <Layout>
-               <Component {...pageProps} />
-            </Layout>
+          
+            <ApolloProvider client={client}>
+					<SessionProvider session={session}>
+						<Component {...pageProps} />
+					</SessionProvider>
+				</ApolloProvider>
          </NextUIProvider>
       </NextThemesProvider>
    );

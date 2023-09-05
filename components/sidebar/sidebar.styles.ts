@@ -6,7 +6,7 @@ export const SidebarWrapper = styled('div', {
    'height': '100%',
    'position': 'fixed',
    'transform': 'translateX(-100%)',
-   'width': '16rem',
+   'width': '22rem',
    'flexShrink': 0,
    'zIndex': '202',
    'overflowY': 'auto',
