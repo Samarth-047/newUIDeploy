@@ -1,6 +1,6 @@
 import '../styles/globals.css';
-import type {AppProps} from 'next/app';
 import {createTheme, NextUIProvider} from '@nextui-org/react';
+import type { AppProps as NextAppProps } from 'next/app';
 import {ThemeProvider as NextThemesProvider} from 'next-themes';
 import {Layout} from '../components/layout/layout';
 import { SessionProvider } from 'next-auth/react';
@@ -20,6 +20,13 @@ const darkTheme = createTheme({
       colors: {},
    },
 });
+
+interface AppProps extends NextAppProps {
+  pageProps: {
+    session: any;  // Replace with the type of your session
+    [key: string]: any;  // For all other props
+  };
+}
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
    return (
