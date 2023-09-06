@@ -36,6 +36,7 @@ export const GET_USER_AND_API_CALLS = gql`
       Api_calls {
         timeduration
         video_url
+        createdOn
       }
     }
   }
