@@ -34,7 +34,7 @@ export const TableWrapper = () => {
       if (data) {
          const apiCalls = data.Users_by_pk.Api_calls;
          setApi_calls(apiCalls);
-         //  console.log(keyValueApiCalls);
+          console.log(data);
          return;
       }
    }, [data, loading, error]);
