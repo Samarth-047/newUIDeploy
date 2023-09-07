@@ -41,4 +41,18 @@ export const GET_USER_AND_API_CALLS = gql`
     }
   }
 `;
+
+//query to fetch wallet details corresponding to the user email
+export const GET_WALLET_DETAILS = gql`
+  query GetWalletDetails($email: String!) {
+    Wallet(where: {email: {_eq: $email } }) {
+      email
+      is_subscribed
+      subscription_type
+      start_date
+      end_date
+      current_balance
+    }
+  }
+`;
   
