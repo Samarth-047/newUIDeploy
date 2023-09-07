@@ -62,7 +62,7 @@ export const Steam = () => {
     <ChartContainer
       // @ts-ignore
       series={series}
-      width={1100}
+      width={900}
       height={400}
       xAxis={[
         {
