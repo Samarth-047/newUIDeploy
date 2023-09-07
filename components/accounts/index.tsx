@@ -35,14 +35,8 @@ export const Accounts = () => {
                </Link>
                <Text>/</Text>
             </Crumb>
-
             <Crumb>
-               <UsersIcon />
-               <CrumbLink href="#">Users</CrumbLink>
-               <Text>/</Text>
-            </Crumb>
-            <Crumb>
-               <CrumbLink href="#">List</CrumbLink>
+               <CrumbLink href="#">API-Calls List</CrumbLink>
             </Crumb>
          </Breadcrumbs>
 

@@ -1,101 +1,88 @@
-import React from 'react';
-import {Box} from '../styles/box';
-import Chart, {Props} from 'react-apexcharts';
-
-const state: Props['series'] = [
-   {
-      name: 'Series1',
-      data: [31, 40, 28, 51, 42, 109, 100],
-   },
-   {
-      name: 'Series2',
-      data: [11, 32, 45, 32, 34, 52, 41],
-   },
-];
-
-const options: Props['options'] = {
-   chart: {
-      type: 'area',
-      animations: {
-         easing: 'linear',
-         speed: 300,
-      },
-      sparkline: {
-         enabled: false,
-      },
-      brush: {
-         enabled: false,
-      },
-      id: 'basic-bar',
-      fontFamily: 'Inter, sans-serif',
-      foreColor: 'var(--nextui-colors-accents9)',
-      stacked: true,
-      toolbar: {
-         show: false,
-      },
-   },
-
-   xaxis: {
-      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-      labels: {
-         // show: false,
-         style: {
-            colors: 'var(--nextui-colors-accents8)',
-            fontFamily: 'Inter, sans-serif',
-         },
-      },
-      axisBorder: {
-         color: 'var(--nextui-colors-border)',
-      },
-      axisTicks: {
-         color: 'var(--nextui-colors-border)',
-      },
-   },
-   yaxis: {
-      labels: {
-         style: {
-            colors: 'var(--nextui-colors-accents8)',
-            fontFamily: 'Inter, sans-serif',
-         },
-      },
-   },
-   tooltip: {
-      enabled: false,
-   },
-   grid: {
-      show: true,
-      borderColor: 'var(--nextui-colors-border)',
-      strokeDashArray: 0,
-      position: 'back',
-   },
-   stroke: {
-      curve: 'smooth',
-      fill: {
-         colors: ['red'],
-      },
-   },
-   // @ts-ignore
-   markers: false,
-};
+import React, { useState, useEffect } from 'react';
+import { BarPlot, LinePlot, ChartContainer, ChartsXAxis, ChartsYAxis } from '@mui/x-charts';
+import { useSession } from 'next-auth/react';
+import { useQuery } from '@apollo/client';
+import { GET_USER_AND_API_CALLS } from '../../src/graphql/queries.js';
 
 export const Steam = () => {
-   return (
-      <>
-         <Box
-            css={{
-               width: '100%',
-               zIndex: 5,
-            }}
-         >
-            <div id="chart">
-               <Chart
-                  options={options}
-                  series={state}
-                  type="area"
-                  height={425}
-               />
-            </div>
-         </Box>
-      </>
-   );
+  const { data: session } = useSession();
+  const [Api_calls, setApi_calls] = useState([]);
+  const [series, setSeries] = useState([
+    {
+      type: 'bar',
+      yAxisKey: 'eco',
+      color: 'grey',
+      // create a variable of type array
+      data: [[]],
+      
+    },
+  ]);
+
+  const userEmail = session?.user?.email;
+  const { loading, error, data } = useQuery(GET_USER_AND_API_CALLS, {
+    variables: { email: userEmail },
+    skip: !userEmail,
+  });
+
+  useEffect(() => {
+    if (loading) {
+      console.log('Loading...');
+      return;
+    }
+
+    if (error) {
+      console.error('Error fetching data:', error);
+      return;
+    }
+
+    if (data) {
+      const apiCalls = data.Users_by_pk.Api_calls;
+      let countArray = new Array(31).fill(0);
+
+      apiCalls.forEach((call:any) => {
+        const day = parseInt(call.createdOn.split('-')[2], 10);
+        countArray[day - 1]++; // Subtract 1 because array is zero-based
+      });
+      // console.log(countArray);
+      // Update series state
+      setSeries([
+        {
+          type: 'bar',
+          yAxisKey: 'eco',
+          color: 'grey',
+          // @ts-ignore
+          data: countArray,
+        },
+      ]);
+      setApi_calls(apiCalls);
+    }
+  }, [data, loading, error]);
+
+  return (
+    <ChartContainer
+      // @ts-ignore
+      series={series}
+      width={1100}
+      height={400}
+      xAxis={[
+        {
+          id: 'years',
+          data: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+          scaleType: 'band',
+          valueFormatter: (value) => value.toString(),
+        },
+      ]}
+      yAxis={[
+        {
+          id: 'eco',
+          scaleType: 'linear',
+        },
+      ]}
+    > 
+      <BarPlot />
+      {/* <LinePlot /> */}
+      <ChartsXAxis label="Day" position="bottom" axisId="years" />
+      <ChartsYAxis label="Usage" position="left" axisId="eco" />
+    </ChartContainer>
+  );
 };

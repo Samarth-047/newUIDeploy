@@ -5,6 +5,7 @@ import { Box } from '../styles/box';
 import { useSession } from "next-auth/react"
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER_AND_API_CALLS } from "../../src/graphql/queries.js";
+import { RenderCell } from "./render-cell";
 
 export const TableWrapper = () => {
    const { data: session } = useSession();
@@ -34,7 +35,7 @@ export const TableWrapper = () => {
       if (data) {
          const apiCalls = data.Users_by_pk.Api_calls;
          setApi_calls(apiCalls);
-          console.log(data);
+         console.log(apiCalls);
          return;
       }
    }, [data, loading, error]);
@@ -68,8 +69,9 @@ export const TableWrapper = () => {
                   </Table.Column>
                )}
             </Table.Header>
-            <Table.Body >
-               {Api_calls?.map((row:any, index) => (
+
+            <Table.Body items={Api_calls}>
+            {Api_calls?.map((row:any, index) => (
                   <Table.Row key={index}>
                      <Table.Cell>
                         {row.video_url}
