@@ -84,7 +84,7 @@ export const CardBalance3 = () => {
             px: '$6',
          }}
       >
-         <Card.Body css={{py: '$16',width:'$80'}}>
+         <Card.Body css={{py: '$16',width:'$60'}}>
             <Flex css={{gap: '$5'}}>
                <Community />
                <Flex direction={'column'}>
