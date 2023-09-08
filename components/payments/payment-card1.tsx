@@ -10,7 +10,13 @@ import { useEffect, useState } from 'react';
 
 export const PaymentCard1 = () => {
    const { data: session } = useSession();
-   const [walletData, setwalletData] = useState();
+   const [walletData, setwalletData] = useState(
+      {
+         current_balance: 0,
+         start_date: "",
+         end_date: "",
+      }
+   );
    const userEmail = session?.user?.email;
    
 
@@ -32,7 +38,12 @@ export const PaymentCard1 = () => {
       if (data) {
          console.log("Success fetching data:", data.Wallet[0].current_balance);
          const walletdata = data.Wallet[0];
-         setwalletData(walletdata);
+         setwalletData({
+            current_balance: data.Wallet[0].current_balance || 0,
+            start_date: data.Wallet[0].start_date || "",
+            end_date: data.Wallet[0].end_date || "",
+         });
+
 
 
          //  console.log(keyValueApiCalls);
