@@ -7,6 +7,8 @@ import { GET_USER_AND_API_CALLS } from '../../src/graphql/queries.js';
 export const Steam = () => {
   const { data: session } = useSession();
   const [Api_calls, setApi_calls] = useState([]);
+  const [chartWidth, setChartWidth] = useState(window.innerWidth > 1100 ? 1100 : window.innerWidth - 20);
+  
   const [series, setSeries] = useState([
     {
       type: 'bar',
@@ -58,11 +60,24 @@ export const Steam = () => {
     }
   }, [data, loading, error]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setChartWidth(window.innerWidth > 1100 ? 1100 : window.innerWidth - 20);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <ChartContainer
       // @ts-ignore
       series={series}
-      width={900}
+      width={chartWidth} 
       height={400}
       xAxis={[
         {

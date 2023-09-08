@@ -62,6 +62,7 @@ export const Content = () => (
                      'gap': '$10',
                      'flexWrap': 'wrap',
                      'justifyContent': 'center',
+                     'overflow': 'scroll',
                      '@sm': {
                         flexWrap: 'nowrap',
                      },

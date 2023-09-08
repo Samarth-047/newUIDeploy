@@ -62,7 +62,7 @@ export const SidebarWrapper = () => {
                         href="accounts"
                      />
                      <SidebarItem
-                        title="Payments"
+                        title="Wallet"
                         icon={<PaymentsIcon />}
                         href="/payment"
                      />

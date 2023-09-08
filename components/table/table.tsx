@@ -1,4 +1,4 @@
-import { Table } from '@nextui-org/react';
+import { Table, Pagination } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { Box } from '../styles/box';
@@ -10,6 +10,16 @@ import { RenderCell } from "./render-cell";
 export const TableWrapper = () => {
    const { data: session } = useSession();
    const [Api_calls, setApi_calls] = useState([]);
+   const [currentPage, setCurrentPage] = useState(1);
+   const itemsPerPage = 10;  // Change this value as needed
+
+   const indexOfLastItem = currentPage * itemsPerPage;
+   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+   const currentItems = Api_calls.slice(indexOfFirstItem, indexOfLastItem);
+   // @ts-ignore
+   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
 
    const Columns = [
       { name: 'VIDEO URL', uid: 'video_url' },
@@ -40,6 +50,7 @@ export const TableWrapper = () => {
       }
    }, [data, loading, error]);
 
+   // @ts-ignore
    return (
       <Box
          css={{
@@ -69,9 +80,8 @@ export const TableWrapper = () => {
                   </Table.Column>
                )}
             </Table.Header>
-
-            <Table.Body items={Api_calls}>
-            {Api_calls?.map((row:any, index) => (
+            <Table.Body items={currentItems}>
+               {currentItems?.map((row: any, index) => (
                   <Table.Row key={index}>
                      <Table.Cell>
                         {row.video_url}
@@ -82,14 +92,17 @@ export const TableWrapper = () => {
                   </Table.Row>
                ))}
             </Table.Body>
-            <Table.Pagination
-               shadow
-               noMargin
-               align="center"
-               rowsPerPage={8}
-               onPageChange={(page) => console.log({ page })}
-            />
          </Table>
+         {/* @ts-ignore */}
+         <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+            <Pagination
+               total={Math.ceil(Api_calls.length / itemsPerPage)}
+               // @ts-ignore
+               value={currentPage}
+               onChange={(value) => paginate(value)}
+            />
+         </div>
+
       </Box>
    );
 };

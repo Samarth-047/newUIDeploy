@@ -5,14 +5,16 @@ import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
 import { useSession } from "next-auth/react"
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_USER_AND_API_CALLS } from "../../src/graphql/queries.js";
+import { GET_WALLET_DETAILS } from "../../src/graphql/queries.js";
 import { useEffect, useState } from 'react';
 
-export const CardBalance1 = () => {
+export const PaymentCard1 = () => {
    const { data: session } = useSession();
-   const [Api_calls, setApi_calls] = useState([]);
+   const [walletData, setwalletData] = useState();
    const userEmail = session?.user?.email;
-   const { loading, error, data } = useQuery(GET_USER_AND_API_CALLS, {
+   
+
+   const { loading, error, data } = useQuery(GET_WALLET_DETAILS, {
       variables: { email: userEmail },
       skip: !userEmail,
    });
@@ -28,17 +30,22 @@ export const CardBalance1 = () => {
       }
 
       if (data) {
-         const apiCalls = data.Users_by_pk.Api_calls;
-         setApi_calls(apiCalls);
+         console.log("Success fetching data:", data.Wallet[0].current_balance);
+         const walletdata = data.Wallet[0];
+         setwalletData(walletdata);
+
+
          //  console.log(keyValueApiCalls);
          return;
       }
    }, [data, loading, error]);
+
+
    return (
       <Card
          css={{
             mw: '375px',
-            bg: '$blue600',
+            bg: '$green600',
             borderRadius: '$xl',
             px: '$6',
             width:'$100'
@@ -49,20 +56,21 @@ export const CardBalance1 = () => {
                <Community />
                <Flex direction={'column'}>
                   <Text span css={{color: 'white'}}>
-                     API-Calls made
+                     Current Balance
                   </Text>
                </Flex>
             </Flex>
-            <Flex css={{gap: '$6', py: '$10'}} align={'center'}>
-               <Text
+            <Flex css={{gap: '$10', py: '$10'}} align={'center'}>
+               {walletData && <Text
                   span
                   size={'$xl'}
                   css={{color: 'white'}}
                   weight={'semibold'}
                >
-                  {Api_calls.length}
-               </Text>
+                  {walletData.current_balance}
+               </Text>}
             </Flex>
+            
          </Card.Body>
       </Card>
    );

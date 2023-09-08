@@ -15,12 +15,10 @@ interface Company {
 export const CompaniesDropdown = () => {
    const [company, setCompany] = useState<Company>({
       name: 'SYNC Labs',
-      location: 'CIE IIT-H',
+      location: 'CIE IIIT-H',
       logo: <AcmeIcon />,
    });
    return (
-      
-         
             <Box>
                <Flex align={'center'} css={{gap: '$7'}}>
                   {company.logo}

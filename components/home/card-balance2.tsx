@@ -79,9 +79,10 @@ export const CardBalance2 = () => {
             bg: '$accents0',
             borderRadius: '$xl',
             px: '$6',
+            width:'$100'
          }}
       >
-         <Card.Body css={{py: '$16',width:'$60'}}>
+         <Card.Body css={{py: '$16',width:'$80'}}>
             <Flex css={{gap: '$5'}}>
                <Community color={'$accents9'} />
                <Flex direction={'column'}>
