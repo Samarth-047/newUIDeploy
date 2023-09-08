@@ -118,22 +118,22 @@ export default function Payment() {
 
 
             <Text h3>Wallet</Text>
-            <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {balance === 0 &&
-                    <>
+            // <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            //     {balance === 0 &&
+            //         <>
 
-                        <script async
-                            src="https://js.stripe.com/v3/buy-button.js">
-                        </script>
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_1NnqdfSI0BWXfdSuZUORmy8h"
-                            publishable-key={publishableKey}
-                            customer-email={customerEmail}
-                        >
-                        </stripe-buy-button>
-                    </>
-                }
-            </Box>
+            //             <script async
+            //                 src="https://js.stripe.com/v3/buy-button.js">
+            //             </script>
+            //             <stripe-buy-button
+            //                 buy-button-id="buy_btn_1NnqdfSI0BWXfdSuZUORmy8h"
+            //                 publishable-key={publishableKey}
+            //                 customer-email={customerEmail}
+            //             >
+            //             </stripe-buy-button>
+            //         </>
+            //     }
+            // </Box>
             <br />
             <br />
             <br />
