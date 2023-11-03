@@ -73,7 +73,7 @@ export const Accounts = () => {
          }}>
             <Input
                value={secretKey}
-               onChange={(e) => setSecretKey(e.target.value)}
+              
                placeholder="Enter receiver's secret key"
             />
             <br />
@@ -86,7 +86,6 @@ export const Accounts = () => {
             <Input
                value={fileLocation}
                placeholder="Selected file"
-               onClick={() => document.getElementById("fileInput").click()}
                readOnly
             />
             <br />
