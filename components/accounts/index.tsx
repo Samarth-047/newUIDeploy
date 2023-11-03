@@ -34,9 +34,8 @@ export const Accounts = () => {
    
 
 const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
-    const target = event.target as HTMLInputElement;
-    if (target.files) {
-        const selectedFile = target.files[0];
+    if (event.target instanceof HTMLInputElement && event.target.files) {
+        const selectedFile = event.target.files[0];
         if (selectedFile) {
             setFileLocation(selectedFile.name);
         }
