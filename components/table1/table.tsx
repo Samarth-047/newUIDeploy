@@ -23,8 +23,8 @@ export const TableWrapper = () => {
 
    const Columns = [
       { name: 'Sender', uid: 'video_url' },
-      { name: 'Receiver', uid: 'timeduration' },
-      { name: 'Data Tranfer Start Time', uid: 'timeduration' },
+      { name: 'File Name', uid: 'timeduration' },
+      { name: 'Request', uid: 'timeduration' },
    ];
 
    const userEmail = session?.user?.email;
@@ -50,6 +50,17 @@ export const TableWrapper = () => {
          return;
       }
    }, [data, loading, error]);
+
+   const handleAccept = (id) => {
+      console.log(`Accepted for ID: ${id}`);
+      // Add your logic here for when the "Accept" button is clicked
+  }
+  
+  const handleReject = (id) => {
+      console.log(`Rejected for ID: ${id}`);
+      // Add your logic here for when the "Reject" button is clicked
+  }
+  
 
    // @ts-ignore
    return (
@@ -91,8 +102,9 @@ export const TableWrapper = () => {
                         {row.timeduration}
                      </Table.Cell>
                      <Table.Cell>
-                        {row.timeduration}
-                     </Table.Cell>
+   <Button onClick={() => handleAccept(row.id)}>Accept</Button> {/* Assuming you want to do something with the row ID or some data */}
+   <Button onClick={() => handleReject(row.id)}>Reject</Button>
+</Table.Cell>
                   </Table.Row>
                ))}
             </Table.Body>

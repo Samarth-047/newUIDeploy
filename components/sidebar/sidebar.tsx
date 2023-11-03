@@ -48,25 +48,27 @@ export const SidebarWrapper = () => {
                css={{height: '100%'}}
             >
                <Sidebar.Body className="body sidebar">
-                  <SidebarItem
-                     title="Home"
-                     icon={<HomeIcon />}
-                     isActive={router.pathname === '/'}
-                     href="/"
-                  />
-                  <SidebarMenu title="Main Menu">
+               <SidebarMenu title="Main Menu">
+                     
                      <SidebarItem
-                        isActive={router.pathname === '/accounts'}
-                        title="API-Calls History"
-                        icon={<AccountsIcon />}
-                        href="accounts"
-                     />
-                     <SidebarItem
-                        title="Wallet"
+                        title="Receive"
                         icon={<PaymentsIcon />}
                         href="/payment"
                      />
+                     <SidebarItem
+                     title="Send"
+                     icon={<HomeIcon />}
+                     isActive={router.pathname === '/'}
+                     href="accounts"
+                  />
                   </SidebarMenu>
+                  <SidebarItem
+                        isActive={router.pathname === '/accounts'}
+                        title="Data Transfer Details"
+                        icon={<AccountsIcon />}
+                        href="/"
+                     />
+                  
                </Sidebar.Body>
             </Flex>
          </Sidebar>

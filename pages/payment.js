@@ -22,6 +22,9 @@ import { useSession } from "next-auth/react"
 import { GET_WALLET_DETAILS } from "../src/graphql/queries.js";
 
 
+import {TableWrapper} from '../components/table1/table';
+
+
 
 export default function Payment() {
     const { data: session } = useSession();
@@ -112,47 +115,17 @@ export default function Payment() {
                     <Text>/</Text>
                 </Crumb>
                 <Crumb>
-                    <CrumbLink href="#">Wallet</CrumbLink>
+                    <CrumbLink href="#">Receive</CrumbLink>
                 </Crumb>
             </Breadcrumbs>
 
 
-            <Text h3>Wallet</Text>
+            <Text h3>Receive File</Text>
             <br />
             <br />
             <br />
-            <Box css={{
-                'gap': '$12',
-                'flexDirection': 'row',
-                '@media screen and (max-width: 768px)': {
-                    'flexDirection': 'column'
-                }
-            }}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <PaymentCard1 />
-                <PaymentCard2 />
-                <PaymentCard3 />
-            </Box>
-            <br />
-            <br />
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                <Button
-                    disabled={balance > 0} // disables the button if balance is greater than 0
-                    onClick={() => {
-                        CheckOut({
-                            lineItems: [
-                                {
-                                    price: "price_1NnOUgSI0BWXfdSuDXjzMwU1",
-                                    quantity: 1,
-                                },
-                            ],
-                        });
-                    }}
-                    style={{ width: '5vw' }}
-                >
-                    PAY
-                </Button>
-            </div>
+            <TableWrapper />
+            
 
         </Flex>
     );

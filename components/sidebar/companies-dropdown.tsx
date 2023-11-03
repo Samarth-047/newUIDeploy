@@ -14,8 +14,8 @@ interface Company {
 
 export const CompaniesDropdown = () => {
    const [company, setCompany] = useState<Company>({
-      name: 'SYNC Labs',
-      location: 'CIE IIIT-H',
+      name: 'UDP P2P Data Transfer',
+      location: 'DaLal',
       logo: <AcmeIcon />,
    });
    return (
