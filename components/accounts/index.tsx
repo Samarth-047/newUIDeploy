@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Breadcrumbs, Crumb, CrumbLink } from '../breadcrumb/breadcrumb.styled';
 import { HouseIcon } from '../icons/breadcrumb/house-icon';
 import { Flex } from '../styles/flex';
+import{ ChangeEvent } from 'react';
 
 export const Accounts = () => {
    const [secretKey, setSecretKey] = useState('');
@@ -30,14 +31,18 @@ export const Accounts = () => {
       }, 50);
    };
 
-   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-        const selectedFile = event.target.files[0];
+   
+
+const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
+    const target = event.target as HTMLInputElement;
+    if (target.files) {
+        const selectedFile = target.files[0];
         if (selectedFile) {
             setFileLocation(selectedFile.name);
         }
     }
 };
+
 
 
    return (
