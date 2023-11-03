@@ -32,15 +32,17 @@ export const Accounts = () => {
    };
 
    
-const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (files) {
-        const selectedFile = files[0];
-        if (selectedFile) {
-            // Assuming setFileLocation is defined elsewhere
-            setFileLocation(selectedFile.name);
-        }
+const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
+  // Narrow down the event target to an HTMLInputElement using a type guard
+  const target = event.target as HTMLInputElement;
+  // Make sure we have files in our event target before trying to access them
+  if ('files' in target && target.files) {
+    const selectedFile = target.files[0];
+    if (selectedFile) {
+      // Assuming setFileLocation is defined elsewhere
+      setFileLocation(selectedFile.name);
     }
+  }
 };
 
 
@@ -88,11 +90,11 @@ const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
             <br />
 
                         <Input 
-                type="file" 
-                onChange={handleFileChange} 
-                style={{ display: 'none' }} 
-                id="fileInput" 
-            />
+  type="file" 
+  onChange={handleFileChange as unknown as React.ChangeEventHandler<FormElement>} 
+  style={{ display: 'none' }} 
+  id="fileInput" 
+/>
             <Input
                value={fileLocation}
                placeholder="Selected file"
