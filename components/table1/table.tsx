@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react"
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER_AND_API_CALLS } from "../../src/graphql/queries.js";
 import { RenderCell } from "./render-cell";
+import Button from '@mui/material/Button';
 
 export const TableWrapper = () => {
    const { data: session } = useSession();
