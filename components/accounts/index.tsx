@@ -30,12 +30,15 @@ export const Accounts = () => {
       }, 50);
    };
 
-   const handleFileChange = (event) => {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-         setFileLocation(selectedFile.name);
-      }
-   };
+   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+        const selectedFile = event.target.files[0];
+        if (selectedFile) {
+            setFileLocation(selectedFile.name);
+        }
+    }
+};
+
 
    return (
       <Flex
