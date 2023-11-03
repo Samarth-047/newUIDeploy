@@ -32,16 +32,16 @@ export const Accounts = () => {
    };
 
    
-
-const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
-    if (event.target instanceof HTMLInputElement && event.target.files) {
-        const selectedFile = event.target.files[0];
+const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files) {
+        const selectedFile = files[0];
         if (selectedFile) {
+            // Assuming setFileLocation is defined elsewhere
             setFileLocation(selectedFile.name);
         }
     }
 };
-
 
 
    return (
@@ -87,11 +87,11 @@ const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
             />
             <br />
 
-            <Input 
-               type="file" 
-               onChange={handleFileChange} 
-               style={{ display: 'none' }} 
-               id="fileInput" 
+                        <Input 
+                type="file" 
+                onChange={handleFileChange} 
+                style={{ display: 'none' }} 
+                id="fileInput" 
             />
             <Input
                value={fileLocation}
