@@ -52,12 +52,12 @@ export const TableWrapper = () => {
       }
    }, [data, loading, error]);
 
-   const handleAccept = (id) => {
+   const handleAccept = (id : any) => {
       console.log(`Accepted for ID: ${id}`);
       // Add your logic here for when the "Accept" button is clicked
   }
   
-  const handleReject = (id) => {
+  const handleReject = (id : any) => {
       console.log(`Rejected for ID: ${id}`);
       // Add your logic here for when the "Reject" button is clicked
   }
