@@ -31,18 +31,8 @@ export const Accounts = () => {
       }, 50);
    };
 
-   
-const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
-  // First cast to unknown, then to HTMLInputElement
-  const target = event.target as unknown as HTMLInputElement;
-  if (target.files) {
-    const selectedFile = target.files[0];
-    if (selectedFile) {
-      // Assuming setFileLocation is defined elsewhere
-      setFileLocation(selectedFile.name);
-    }
-  }
-};
+
+
 
 
    return (
@@ -90,7 +80,6 @@ const handleFileChange = (event: ChangeEvent<HTMLFormElement>) => {
 
                         <Input 
   type="file" 
-  onChange={handleFileChange as unknown as React.ChangeEventHandler<FormElement>} 
   style={{ display: 'none' }} 
   id="fileInput" 
 />
